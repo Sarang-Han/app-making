@@ -7,7 +7,7 @@ export default function About() {
     <View>
     <Text style={text_st}>This is about the app</Text>
     <Image style={{width:200, height:200}}
-      source={require('../assets/images/cat.png')} />
+      source={require('./cat-icon.png')} />
     </View>
   );
 }
