@@ -1,22 +1,15 @@
-import { Text, View, Image } from "react-native";
+import { Text, View, Button } from "react-native";
+import { router } from "expo-router";
+
+var text_st = { fontSize: 20, margin: 10 };
 
 export default function Index() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}>
-
-      <View style={{backgroundColor:"cyan"}}>
-        <Text style={{fontSize:30}}>Hello Ewha</Text>
-        <Text style={{fontSize:24, color:"blue"}}>
-        Nice to meet you!
-      </Text>
-    </View>
-      <Image style={{width:200, height:200}}
-        source={require('@/assets/images/cat.png')} />
+    <View>
+      <Text style={text_st}>Home Screen</Text>
+      <Button title="About" onPress={() => router.navigate({ pathname: '/about' })} />
+      <View style={{ height: 10 }} />
+      <Button title="Hello" onPress={() => router.navigate({ pathname: '/hello' })} />
     </View>
   );
 }
