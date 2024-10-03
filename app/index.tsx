@@ -10,6 +10,8 @@ export default function Index() {
       <Button title="About" onPress={() => router.navigate({ pathname: '/about' })} />
       <View style={{ height: 10 }} />
       <Button title="Hello" onPress={() => router.navigate({ pathname: '/hello' })} />
+      <View style={{ height: 10 }} />
+      <Button title="구구단" onPress={() => router.navigate({ pathname: '/mult' })} />
     </View>
   );
 }
