@@ -1,5 +1,6 @@
 import { Text, View, Button, TextInput } from "react-native";
 import { useState } from "react";
+import React from "react";
 
 var input_st = { fontSize: 20, borderWidth: 1, borderColor: 'gray', flex: 1, padding: 5, margin: 2 };
 
