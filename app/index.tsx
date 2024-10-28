@@ -2,6 +2,8 @@ import { Text, View, Button, StyleSheet } from "react-native";
 import { useState } from "react";
 import React from "react";
 
+// npx expo start
+
 var st_circle = {
   width: 30,
   height: 30,
@@ -12,7 +14,8 @@ var st_circle = {
 
 var st_dice = {
   backgroundColor: 'rgb(255, 240, 200)',
-  padding: 10
+  padding: 10,
+  margin: 5  // 주사위 사이 간격을 위해 추가
 };
 
 function Circle() {
@@ -80,18 +83,26 @@ function Dice(props: DiceProps) {
 }
 
 export default function App() {
-  const [N, setN] = useState(1)
+  const [N1, setN1] = useState(1);  // 첫 번째 주사위
+  const [N2, setN2] = useState(1);  // 두 번째 주사위
+
+  const rollDice = () => {
+    setN1(Math.floor(Math.random() * 6) + 1);
+    setN2(Math.floor(Math.random() * 6) + 1);
+  };
 
   return (
     <View style={{flex:1}}>
-      <Text style={styles.text}>Dice</Text>
+      <Text style={styles.text}>Double Dice</Text>
+        <Text style={styles.text}>{N1 + N2}</Text>
       <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-      <Dice num={N} />
-    </View>
-    <View style={{marginHorizontal:100, marginVertical:30}}>
-      <Button title="Roll" onPress={
-        () => setN(Math.floor(Math.random() * 6) + 1)} />
-    </View>
+        <Dice num={N1} />
+        <Dice num={N2} />
+      </View>
+      
+      <View style={{marginHorizontal:100, marginVertical:30}}>
+        <Button title="Roll" onPress={rollDice} />
+      </View>
     </View>
   );
 }
@@ -102,4 +113,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     margin: 10,
   },
+  sumContainer: {
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  sumText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'rgb(0, 200, 255)',
+  }
 });
