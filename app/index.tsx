@@ -16,15 +16,19 @@ export default function App() {
 
   function run_everysec() {
     var date = new Date();
-    setHour(padZero(date.getHours()));
+    var hours = date.getHours();
+    var ampm = hours < 12 ? "am" : "pm";
+
+    if (hours > 12) {
+        hours -= 12;
+    } else if (hours === 0) {
+        hours = 12; // 0시를 12시로 변환
+    }
+
+    setHour(padZero(hours));
     setMin(padZero(date.getMinutes()));
     setSec(padZero(date.getSeconds()));
-
-    if(date.getHours() < 12) {
-      setTime("am");
-    } else {
-      setTime("pm");
-    }
+    setTime(ampm);
   }
 
   function padZero(num: number): string {
