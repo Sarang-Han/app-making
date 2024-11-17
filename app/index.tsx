@@ -1,26 +1,38 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import { useEffect, useState } from 'react';
 
-var text_st = {flex:1, fontSize:20, borderWidth:2, padding:5, margin:2};
-
-var N = ['A', 'B', 'C', 'D'];
-var P = [1234, 5678, 9101, 1121];
+var url = "http://api.openweathermap.org/data/2.5/weather?q=Seoul&units=metric&appid=6af8dad4784c634d3674f60110f2a015";
+var text_st = {fontSize:20};
 
 export default function App() {
+  const [city, setCity] = useState('');
+  const [country, setCountry] = useState('');
+  const [temp, setTemp] = useState('');
+  const [weather, setWeather] = useState('');
+  const [wind, setWind] = useState('');
 
-  var L = [];
+  useEffect(function() {
+    fetch(url)
+    .then(function (response) { return response.json(); })
+    .then(function (json) {
+      console.log(json);
+      setCity(json.name);
+      setCountry(json.sys.country);
+      setTemp(json.main.temp);
+      setWeather(json.weather[0].description);
+      setWind(json.wind.speed);
+    })
+    .catch(function (error) {console.error(error);})
+  }, []);
 
-  for (var i = 0; i < N.length; i++){
-    var a = <View style={{flexDirection:"row"}}>
-      <Text style={text_st}>{N[i]}</Text>
-      <Text style={text_st}>{P[i]}</Text>
-      </View>;
-    L.push(a);
-  }
   return (
-    <View>
-      {L}
+    <View style={{ flex:1, padding: 20}}>
+      <Text style={text_st}>City: {city}</Text>
+      <Text style={text_st}>Country: {country}</Text>
+      <Text style={text_st}>Temp: {temp}</Text>
+      <Text style={text_st}>Weather: {weather}</Text>
+      <Text style={text_st}>Wind: {wind}</Text>
     </View>
-
   );
-}
+};
