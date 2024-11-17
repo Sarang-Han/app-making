@@ -1,16 +1,26 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-let el = <Text>Hello World</Text>; //재할당 가능 변수에 담기
+var text_st = {flex:1, fontSize:20, borderWidth:2, padding:5, margin:2};
 
-  for (let i = 0; i < 5; i++) {
-    el = <View style={{borderWidth: 2, padding: 20}}>{el}</View>;
-  }
+var N = ['A', 'B', 'C', 'D'];
+var P = [1234, 5678, 9101, 1121];
 
 export default function App() {
+
+  var L = [];
+
+  for (var i = 0; i < N.length; i++){
+    var a = <View style={{flexDirection:"row"}}>
+      <Text style={text_st}>{N[i]}</Text>
+      <Text style={text_st}>{P[i]}</Text>
+      </View>;
+    L.push(a);
+  }
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      {el}
+    <View>
+      {L}
     </View>
+
   );
 }
